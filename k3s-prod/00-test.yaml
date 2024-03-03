@@ -1,40 +1,54 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: temp
+  namespace: test
   labels:
-    app: nginx
+    app: temp
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: temp
   template:
     metadata:
       labels:
-        app: nginx
+        app: temp
     spec:
       containers:
-      - name: nginx
+      - name: temp
         image: daisukebtw/ipv4-page
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              app: nginx
-
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name:  temp
+  namespace: test
 spec:
   selector:
-    app: nginx
+    app:  temp
+  # ---
+  type:  ClusterIP
   ports:
-  - port: 80
-  type: LoadBalancer
+  - name:  http
+    port:  80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: temp9-ingress # Name of the ingress object
+  namespace: test # Name of the namespace
+spec:
+  rules:
+  - host: "temp9.citadel.home"  # Your hostname
+    http:
+      paths:
+      # Path-based routing settings:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: temp  # The name of the service
+            port:
+              number: 80  # Service Portnumber
