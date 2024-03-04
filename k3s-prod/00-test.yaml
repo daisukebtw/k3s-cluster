@@ -18,13 +18,6 @@ spec:
       containers:
       - name: temp
         image: daisukebtw/ipv4-page
-#      topologySpreadConstraints:
-#        - maxSkew: 1
-#          topologyKey: kubernetes.io/hostname
-#          whenUnsatisfiable: ScheduleAnyway
-#          labelSelector:
-#            matchLabels:
-#              app: temp
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
