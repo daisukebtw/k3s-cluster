@@ -49,7 +49,7 @@ metadata:
   namespace: test # Name of the namespace
 spec:
   rules:
-  - host: "temp9.citadel.home"  # Your hostname
+  - host: "temp2.citadel.home"  # Your hostname
     http:
       paths:
       # Path-based routing settings:
