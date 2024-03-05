@@ -18,15 +18,15 @@ spec:
       containers:
       - name: temp
         image: daisukebtw/ipv4-page
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: env
-                operator: In
-                values:
-                - dev
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: env
+#                operator: In
+#                values:
+#                - dev
 ---
 apiVersion: v1
 kind: Service
